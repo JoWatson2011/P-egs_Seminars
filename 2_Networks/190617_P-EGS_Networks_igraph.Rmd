@@ -1,0 +1,91 @@
+---
+title: 'Intro to Network Analysis: igraph tutorial'
+output:
+  pdf_document: default
+  html_document: default
+---
+
+##Install and load the required packages
+```{r}
+if (!requireNamespace("igraph", quietly = TRUE))
+    install.packages("igraph")
+library(igraph)
+
+if (!requireNamespace("ggplot2", quietly = TRUE))
+    install.packages("ggplot2")
+library(ggplot2)
+```
+
+
+##Import the data.
+If it isn't saved on your desktop, change the path (i.e. the file location) to where you have your data saved.
+In this case, we import a file, 'yeast.csv', and assign it to the variable edgelist. 
+```{r}
+setwd("../Desktop")
+edgelist <- read.csv("yeast.csv")
+
+```
+
+##Make a network.
+Using the function graph_from_data_frame() we can make an igraph network object to run our analysis on and visualise.
+
+```{r}
+network <- graph_from_data_frame(edgelist, directed = F)
+
+print(paste("Avg path length:", average.path.length(network))
+      )
+
+distr <- degree.distribution(network)
+
+ggplot(data = data.frame(distr = distr[2:length(distr)],
+                         "Degree" = as.factor(c(1:(length(distr)-1)))),
+       aes(x = Degree, y = distr)) +
+  geom_point() + geom_line(group = 1) + theme_minimal() +
+  scale_y_continuous(name = "Degree Distribution")
+
+deg <- degree(network)
+plot(network, edge.arrow.size=.4,vertex.label=NA,
+     vertex.size = deg, layout = layout_with_gem(network),
+     main = "Network. Node size proportional to degree (k)")
+
+hs <-hub_score(network, weights=NA)$vector
+plot(network, edge.arrow.size=.4,vertex.label=NA,
+     vertex.size = hs*10, layout = layout_with_gem(network),
+     main = "Network. Node size proportional to hub score")
+```
+
+##Module Detection
+Using the cluster_louvain function, we can find modules (areas of densley connected nodes) within our network.
+Louvain is just one of the clustering algorithms that you can use from igraph.
+Run ?cluster_ to read about the others
+```{r}
+
+groups <- cluster_louvain(network)
+
+V(network)$groups <- membership(groups)
+
+plot(network, 
+     edge.arrow.size=.4,vertex.label=NA,
+     vertex.size = 3.5, layout = layout_with_gem(network),
+     vertex.color = V(network)$groups)
+
+```
+
+##Layouts
+Layouts describe where your nodes are positioned in relation to one another.
+
+```{r}
+layout <- list(layout_nicely(network),
+               layout_with_kk(network),
+               layout_with_gem(network),
+               layout_as_star(network),
+               layout_as_tree(network),
+               layout_with_dh(network)
+               )
+
+lapply(layout, function(x)
+  plot(network, edge.arrow.size=.4,vertex.label=NA,
+     vertex.size = 0.5, layout = x)
+  )
+
+```
