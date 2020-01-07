@@ -1,6 +1,14 @@
-# P(egs) 2019
- Slides and code from the P(egs) bioinformatics seminar series 2019
- 
+Slides and code from the P(egs) bioinformatics seminar series
+
+# 2020
+1)
+2)
+3)
+4)
+5)
+6)
+
+# 2019
 1) Graphics using R
 2) Network analysis
 3) Phylogenetics
@@ -9,4 +17,4 @@
 6) Version Control
   
 # Sign up to our mailing list!
-Contact joanne.watson-5@postgrad.manchester.ac.uk for more information
+Contact joanne.watson@manchester.ac.uk for more information
