@@ -2,11 +2,11 @@ Slides and code from the P(egs) bioinformatics seminar series
 
 # 2020
 1) Introduction to Coding & Graphics in R
-2) Analysing data using GSEA, pathways and Networks
-3) Introduction to Python
-4) Bioinformatics Good Practice: Data Organisation & Consistency
-5) Linking bioinformatics to health data outcomes
-6) Version Control
+2) Introduction to Python
+3) Bioinformatics Good Practice: Data Organisation & Consistency
+4) Linking bioinformatics to health data outcomes
+5) Version Control
+6) Analysing data using GSEA, pathways and Networks
 
 # 2019
 1) Graphics using R
