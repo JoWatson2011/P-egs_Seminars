@@ -1,6 +1,7 @@
 Slides and code from the P(egs) bioinformatics seminar series
 
 # 2020
+
 1) Introduction to Coding & Graphics in R
 2) Introduction to Python
 3) Bioinformatics Good Practice: Data Organisation & Consistency
@@ -16,5 +17,4 @@ Slides and code from the P(egs) bioinformatics seminar series
 5) Machine learning and single cell analysis
 6) Version Control
   
-# Sign up to our mailing list!
-Contact joanne.watson@manchester.ac.uk for more information
+# Contact joanne.watson@manchester.ac.uk for more information
